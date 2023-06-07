@@ -1,0 +1,19 @@
+{
+  "name": "TipJS_course_ecom",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "compression": "^1.7.4",
+    "helmet": "^7.0.0",
+    "husky": "^8.0.3",
+    "morgan": "^1.10.0"
+  }
+}
