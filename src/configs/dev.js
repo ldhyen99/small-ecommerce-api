@@ -5,7 +5,7 @@ const configDev = {
   db: {
     host: process.env.DEV_APP_MONGO_HOST || 'localhost',
     port: process.env.DEV_APP_MONGO_PORT || 27017,
-    name: process.env.DEV_APP_MONGO_NAME || 'dbNoGrabageLifeShopDev',
+    name: process.env.DEV_APP_MONGO_NAME || 'dbFnBlogDev',
   },
 };
 
