@@ -3,6 +3,7 @@
 ### signup
 POST {{url_dev}}/user/signup
 Content-Type: application/json
+x-api-key: 5cd6f2e637f18867f6c7ff123fdfd6100ffc213aa4e1a440797d2c868e3d704a1286d3fac74d884dd518117e84d2f0248b4182731b3f9408f45cefb6e0fb6438
 
 {
   "name": "Blog Fn tester",
