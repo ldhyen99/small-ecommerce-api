@@ -8,6 +8,9 @@
     "yarn": ">=1.22.0",
     "npm": "please-use-yarn"
   },
+  "scripts": {
+    "start:dev": "node --watch server.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "crypto": "^1.0.1",
