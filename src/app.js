@@ -6,14 +6,14 @@ const compression = require('compression');
 const app = express();
 
 // init middlewares
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 // morgan('dev');
 // morgan('combined'); // use for production
 // morgan('common');
 // morgan('short');
 // morgan('tiny');
 
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(helmet());
 app.use(compression());
 app.use(express.json());

@@ -7,6 +7,33 @@ x-api-key: 5cd6f2e637f18867f6c7ff123fdfd6100ffc213aa4e1a440797d2c868e3d704a1286d
 
 {
   "name": "Blog Fn tester",
-  "email": "blogfntester03@gmail.com",
+  "email": "blogfntester@gmail.com",
   "password": "abc123"
+}
+
+#####
+POST {{url_dev}}/user/login
+Content-Type: application/json
+x-api-key: 5cd6f2e637f18867f6c7ff123fdfd6100ffc213aa4e1a440797d2c868e3d704a1286d3fac74d884dd518117e84d2f0248b4182731b3f9408f45cefb6e0fb6438
+
+{
+  "email": "blogfntester@gmail.com",
+  "password": "abc123"
+}
+
+####
+POST {{url_dev}}/user/logout
+Content-Type: application/json
+x-api-key: 5cd6f2e637f18867f6c7ff123fdfd6100ffc213aa4e1a440797d2c868e3d704a1286d3fac74d884dd518117e84d2f0248b4182731b3f9408f45cefb6e0fb6438
+x-client-id: "6482a7ee93e2884e9c107687"
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDlkMmY1MzRkYjM1OTMxZWNhMmI0ZGYiLCJlbWFpbCI6ImJsb2dmbnRlc3RlckBnbWFpbC5jb20iLCJpYXQiOjE2ODgwMjMwODIsImV4cCI6MTY4ODE5NTg4Mn0.ELu-qQO6bc6j2Ohd7yfFur7dfXqmrIY_ZMeObRi5RIU
+####
+POST {{url_dev}}/user/handlerRefreshToken
+Content-Type: application/json
+x-api-key: 5cd6f2e637f18867f6c7ff123fdfd6100ffc213aa4e1a440797d2c868e3d704a1286d3fac74d884dd518117e84d2f0248b4182731b3f9408f45cefb6e0fb6438
+x-client-id: "649d319f6afbf75777c03b4f"
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDlkMzE5ZjZhZmJmNzU3NzdjMDNiNGYiLCJlbWFpbCI6ImJsb2dmbnRlc3RlckBnbWFpbC5jb20iLCJpYXQiOjE2ODgwMjM0NTUsImV4cCI6MTY4ODE5NjI1NX0.jsnwqBgA-p4ayYCPgYJYrLuQ6xUzJ326Kdj11XhV6wI
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDlkMzE5ZjZhZmJmNzU3NzdjMDNiNGYiLCJlbWFpbCI6ImJsb2dmbnRlc3RlckBnbWFpbC5jb20iLCJpYXQiOjE2ODgwMjM0NTUsImV4cCI6MTY4ODYyODI1NX0.ekuEmtOq2frrJuNj2nOKBOhjiTwb6432SPwHUYgY3YU"
 }
