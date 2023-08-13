@@ -20,8 +20,43 @@ const RoleUser = {
 };
 
 class AccessService {
+  static handleRefreshTokenV2 = async ({ keyStore, user, refeshToken }) => {
+    const { userId, email } = user;
+
+    if (keyStore.refeshTokensUsed.includes(refeshToken)) {
+      await KeyTokenService.deleteKeyById(userId);
+      throw new ForbiddenError('Something wrong happend! Please re-login');
+    }
+
+    if (keyStore.refeshToken !== refeshToken)
+      throw new AuthFailureError('Shop did not registeted');
+
+    const foundShop = await findByEmail({ email });
+    if (!foundShop) throw new AuthFailureError('Shop did not registeted');
+
+    // create a new pair token
+    const tokens = await createTokenPair(
+      { userId, email },
+      keyStore.publicKey,
+      keyStore.privateKey
+    );
+
+    await keyStore.update({
+      $set: {
+        refeshToken: tokens.refreshToken,
+      },
+      $addToSet: {
+        refeshTokensUsed: refeshToken,
+      },
+    });
+    return {
+      user,
+      tokens,
+    };
+  };
+
   /**
-   * check this token used
+   * check this token used with JWT
    */
   static handleRefreshToken = async (refreshToken) => {
     const foundToken = await KeyTokenService.findByRefreshTokenUsed(
@@ -79,7 +114,6 @@ class AccessService {
 
   static logout = async (keyStore) => {
     const delKey = await KeyTokenService.removeKeyById(keyStore._id);
-    console.log({ delKey });
     return delKey;
   };
 

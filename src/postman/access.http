@@ -37,3 +37,24 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDlkMzE5ZjZh
 {
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDlkMzE5ZjZhZmJmNzU3NzdjMDNiNGYiLCJlbWFpbCI6ImJsb2dmbnRlc3RlckBnbWFpbC5jb20iLCJpYXQiOjE2ODgwMjM0NTUsImV4cCI6MTY4ODYyODI1NX0.ekuEmtOq2frrJuNj2nOKBOhjiTwb6432SPwHUYgY3YU"
 }
+
+######Get list product
+POST {{url_dev}}/product
+x-api-key: 5cd6f2e637f18867f6c7ff123fdfd6100ffc213aa4e1a440797d2c868e3d704a1286d3fac74d884dd518117e84d2f0248b4182731b3f9408f45cefb6e0fb6438
+x-client-id: 649d319f6afbf75777c03b4f
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDlkMzE5ZjZhZmJmNzU3NzdjMDNiNGYiLCJlbWFpbCI6ImJsb2dmbnRlc3RlckBnbWFpbC5jb20iLCJpYXQiOjE2OTE5MjA5MDUsImV4cCI6MTY5MjA5MzcwNX0.eTd-tRyHX7xmuO0xSHF2EHfZ0MiNv4M5YmHAHQprDEM
+
+{
+    "product_name":"iPhone 15",
+    "product_thumb":"product_thumb",
+    "product_description":"New product",
+    "product_price":500,
+    "product_quantity":5,
+    "product_type":"Clothing",
+    "product_shop":"6482a7ee93e2884e9c107687",
+    "product_attributes": {
+        "manufacturer": "Apple",
+        "model": "iPhone 15",
+        "color": "Blue"
+    }
+}

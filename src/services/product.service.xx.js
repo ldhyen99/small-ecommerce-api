@@ -1,6 +1,11 @@
 'use strict';
 
-const { product, clothing, electronic } = require('../models/product.model');
+const {
+  product,
+  clothing,
+  electronic,
+  furniture,
+} = require('../models/product.model');
 const {
   BadRequestError,
   AuthFailureError,
@@ -13,16 +18,32 @@ class ProductFactory {
    * type "clothing",
    * payload
    */
-  static async createProduct(type, payload) {
-    switch (type) {
-      case 'Electronics':
-        return new Electronic(payload).createProduct();
-      case 'Clothing':
-        return new Clothing(payload).createProduct();
-      default:
-        throw new BadRequestError(`Invalid Product Types ${type}`);
-    }
+
+  static productRegistry = {}; // key-class
+
+  static registerProductType(type, classRef) {
+    ProductFactory.productRegistry[type] = classRef;
   }
+
+  static async createProduct(type, payload) {
+    console.log({ type });
+    const productClass = ProductFactory.productRegistry[type];
+    if (!productClass)
+      throw new BadRequestError(`Invalid Product Types ${type}`);
+
+    return new productClass(payload).createProduct();
+  }
+  //   switch (type) {
+  //     case 'Electronics':
+  //       return new Electronic(payload).createProduct();
+  //     case 'Clothing':
+  //       return new Clothing(payload).createProduct();
+  //     case 'Furniture':
+  //       return new Clothing(payload).createProduct();
+  //     default:
+  //       throw new BadRequestError(`Invalid Product Types ${type}`);
+  //   }
+  // }
 }
 
 // define base product class
@@ -71,13 +92,10 @@ class Product {
 // define sub class for diff product types Clothing
 class Clothing extends Product {
   async createProduct() {
-    const newClothing = await clothing.create({
-      ...this.product_attributes,
-      product_shop: this.product_shop,
-    });
+    const newClothing = await clothing.create(this.product_attributes);
     if (!newClothing) throw new BadRequestError('create new Clothing error');
 
-    const newProduct = await super.createProduct(newClothing._id);
+    const newProduct = await super.createProduct();
     if (!newProduct) throw new BadRequestError('create new Product error');
 
     return newProduct;
@@ -85,7 +103,7 @@ class Clothing extends Product {
 }
 
 // define sub class for diff product types Electronic
-class Electronic extends Product {
+class Electronics extends Product {
   async createProduct() {
     const newElectronic = await electronic.create({
       ...this.product_attributes,
@@ -100,5 +118,25 @@ class Electronic extends Product {
     return newProduct;
   }
 }
+
+class Furniture extends Product {
+  async createProduct() {
+    const newFurniture = await furniture.create({
+      ...this.product_attributes,
+      product_shop: this.product_shop,
+    });
+    if (!newFurniture) throw new BadRequestError('create new Furniture error');
+
+    const newProduct = await super.createProduct(newFurniture._id);
+    if (!newProduct) throw new BadRequestError('create new Product error');
+
+    return newProduct;
+  }
+}
+
+// register product type
+ProductFactory.registerProductType('Electronics', Electronics);
+ProductFactory.registerProductType('Clothing', Clothing);
+ProductFactory.registerProductType('Furniture', Furniture);
 
 module.exports = ProductFactory;
