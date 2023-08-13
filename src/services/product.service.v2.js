@@ -6,19 +6,10 @@ const {
   electronic,
   furniture,
 } = require('../models/product.model');
-const {
-  BadRequestError,
-  AuthFailureError,
-  ForbiddenError,
-} = require('../core/error.response');
+const { BadRequestError } = require('../core/error.response');
 
 // define Factory class to create product
 class ProductFactory {
-  /**
-   * type "clothing",
-   * payload
-   */
-
   static productRegistry = {}; // key-class
 
   static registerProductType(type, classRef) {
@@ -33,35 +24,9 @@ class ProductFactory {
 
     return new productClass(payload).createProduct();
   }
-  //   switch (type) {
-  //     case 'Electronics':
-  //       return new Electronic(payload).createProduct();
-  //     case 'Clothing':
-  //       return new Clothing(payload).createProduct();
-  //     case 'Furniture':
-  //       return new Clothing(payload).createProduct();
-  //     default:
-  //       throw new BadRequestError(`Invalid Product Types ${type}`);
-  //   }
-  // }
 }
 
 // define base product class
-
-/**
- * product_name: { type: String, required: true },
-    product_thumb: { type: String, required: true },
-    product_description: String,
-    product_price: { type: Number, required: true },
-    product_quantity: { type: Number, required: true },
-    product_type: {
-      type: String,
-      required: true,
-      enum: ['Electronics', 'Clothing', 'Furniture'],
-    },
-    product_shop: { type: Schema.Types.ObjectId, ref: 'User' },
-    product_attributes: { type: Schema.Types.Mixed, required: true },
- */
 class Product {
   constructor({
     product_name,
