@@ -54,14 +54,6 @@ class KeyTokenService {
   };
 
   static findByRefreshToken = async (refreshToken) => {
-    console.log(
-      999,
-      await keytokenModel.findOneAndUpdate(
-        { refeshToken: refreshToken },
-        {},
-        { new: true }
-      )
-    );
     return await keytokenModel.findOneAndUpdate(
       { refeshToken: refreshToken },
       {},
@@ -70,8 +62,6 @@ class KeyTokenService {
   };
 
   static deleteKeyById = async (userId) => {
-    console.log(123, isValidObjectId(userId));
-
     return await keytokenModel.deleteOne({
       user: userId,
     });

@@ -8,3 +8,7 @@ const server = app.listen(PORT, () => {
 process.on('SIGINT', () => {
   server.close(() => console.log('Exit Server Express'));
 });
+
+if (process.env.ENV !== 'local') {
+  console.log = function () {};
+}
