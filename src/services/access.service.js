@@ -69,7 +69,6 @@ class AccessService {
         refreshToken,
         foundToken.privateKey
       );
-      console.log(1, { userId, email });
       // delete
       await KeyTokenService.deleteKeyById(userId);
       throw new ForbiddenError('Something wrong happend!!! Please re-login');
