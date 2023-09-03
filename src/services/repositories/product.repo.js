@@ -74,10 +74,41 @@ const searchProductByUser = async ({ key_search }) => {
   return result;
 };
 
+const updateProductById = async ({
+  productId,
+  bodyUpdate,
+  model,
+  isNew = true,
+}) => {
+  return await model.findByIdAndUpdate(productId, bodyUpdate, {
+    new: isNew,
+  });
+};
+
+const updateNestedObjectParse = (object) => {
+  const final = {};
+  console.log({ object });
+  Object.keys(object || {}).forEach((key) => {
+    if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
+      const response = updateNestedObjectParse(object[key]);
+
+      Object.keys(response || {}).forEach((a) => {
+        final[`${key}.${a}`] = response[a];
+      });
+    } else {
+      final[key] = object[key];
+    }
+  });
+
+  return final;
+};
+
 module.exports = {
   findAllDraftForShop,
   publishProductByShop,
   findAllPublishForShop,
   unPublishProductByShop,
   searchProductByUser,
+  updateProductById,
+  updateNestedObjectParse,
 };

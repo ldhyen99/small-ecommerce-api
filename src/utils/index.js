@@ -16,7 +16,23 @@ const generateLoginKey = () => {
     publicKey,
   };
 };
+
+const removeUndefinedObject = (obj) => {
+  Object.keys(obj).forEach((key) => {
+    if (
+      obj[key] === null ||
+      obj[key] === undefined ||
+      obj[key] === 'undefined'
+    ) {
+      delete obj[key];
+    }
+  });
+
+  return obj;
+};
+
 module.exports = {
   getInfoData,
   generateLoginKey,
+  removeUndefinedObject,
 };
