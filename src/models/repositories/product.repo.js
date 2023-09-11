@@ -1,6 +1,6 @@
 'use strict';
 
-const { product } = require('../../models/product.model');
+const { product } = require('../product.model');
 const { Types } = require('mongoose');
 
 const findAllDraftForShop = async ({ query, limit, skip }) => {
