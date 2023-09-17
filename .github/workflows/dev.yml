@@ -2,7 +2,7 @@ name: Preview and Deploy Infrastructure
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
