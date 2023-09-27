@@ -9,8 +9,9 @@
     "npm": "please-use-yarn"
   },
   "scripts": {
-    "start:dev": "node --watch server.js"
-    
+    "start:dev": "node --watch server.js",
+    "cypress:open":"cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -25,6 +26,7 @@
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "compression": "^1.7.4",
+    "cypress": "^13.2.0",
     "helmet": "^7.0.0",
     "husky": "^8.0.3",
     "morgan": "^1.10.0"
