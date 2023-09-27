@@ -19,3 +19,15 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
+      - name: Build
+        run: yarn build
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+
+
